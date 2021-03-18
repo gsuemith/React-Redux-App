@@ -1,27 +1,27 @@
 # Accessing the Marvel api
 - [ ] To be able to access the Marvel api, you'll need to [create an account](https://developer.marvel.com/documentation/getting_started) and get both a public and private key.  
 
-- [ ] Create a file called `keys.js` in the `src` folder.
+- [ ] Create a file called `.env` in the root (same folder as `package.json`) folder.
 
 - [ ] In the file, export two constants as follows:
-  - [ ] Replace the strings with the keys from your marvel account.
+  - [ ] Replace the strings after the `=` with the keys from your marvel account.
 
 ```
-export const PUBLIC_KEY = 'your_public_key';
-export const PRIVATE_KEY = 'your_private_key';
+REACT_APP_PUBLIC_KEY=your_public_key
+REACT_APP_PRIVATE_KEY=your_private_key
 ```
+- [ ] Note* No quotes, commas, or quotation marks
 
-- [ ] Add `/src/keys.js` to the `.gitignore` file.  !DO NOT RECORD API KEYS TO GITHUB!
+- [ ] !DO NOT RECORD API KEYS TO GITHUB! `.env` is already in the `.gitignore` file.  
 
-### Alternatively, run the following in the root folder
+### Alternatively, run the following in the project's root folder
+
+```
+echo "REACT_APP_PUBLIC_KEY=your_key;
+REACT_APP_PRIVATE_KEY=your_key;" >> .env
+```
 
 Be sure to replace 'your_key' with the appropriate api keys or open the file and edit them.
-
-```
-echo "/src/keys.js" >> .gitignore
-echo "export const PUBLIC_KEY = 'your_key';
-export const PRIVATE_KEY = 'your_key';" > src/keys.js
-```
 
 # To get started run `npm i`
 
