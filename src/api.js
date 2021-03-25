@@ -1,4 +1,5 @@
-import { PUBLIC_KEY, PRIVATE_KEY } from './keys'
+const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY
+const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY
 
 export const URL = 'https://gateway.marvel.com/v1/public/'
 

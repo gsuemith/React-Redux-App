@@ -2,10 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { SelectChar, Name } from '../components/CharSelector'
-import { Matches } from '../components/Round'
-
 import Round from '../components/Round'
+import Winner from '../components/Winner'
 import { startTournament } from '../actions'
 
 const Tournament = ({ rounds, startTournament, tournament, winner }) => {
@@ -28,17 +26,7 @@ const Tournament = ({ rounds, startTournament, tournament, winner }) => {
         ))
       }
       {
-        winner && 
-        <Matches style={{width: '18em'}}>
-          <SelectChar 
-            style={{border: '3px solid gold', height: '80px'}}>
-            <img 
-              src={`${winner.thumbnail.path}/landscape_small.${winner.thumbnail.extension}`} 
-              alt={winner.name}
-            />
-            <Name>{winner.name}</Name>
-          </SelectChar>
-        </Matches>
+        winner && <Winner winner={winner}/>
       }
       </Rounds>
     </div>
