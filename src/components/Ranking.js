@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router'
 import { connect } from 'react-redux'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
 import Competitor, { Card } from './Competitor'
@@ -25,18 +26,45 @@ const Ranking = ({ tournament, characters, startTournament }) => {
     startTournament(tournament);
   }
 
+  const handleOnDragEnd = e => {
+    if (!e.destination) return;
+    console.log(e)
+  }
+
   return (
     <Container>
-      {
-        tournament.map((id, index) => (
-          <Competitor 
-            key={id}
-            seed={index + 1} 
-            character={characters
-            .find(character => character.id === id)}
-          />
-        ))
-      }
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="characters">
+        {(provided) => (
+          <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}
+            style={{display:"flex", flexDirection:"row", listStyle:"None", flexWrap:"wrap"}}
+          >
+          {
+            tournament.map((id, index) => (
+              <Draggable key={id} draggableId={id+""} index={index}>
+                {
+                  (provided) => (
+                    <li
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}>
+                    <Competitor 
+                      
+                      seed={index + 1} 
+                      character={characters
+                      .find(character => character.id === id)}
+                    />
+                    </li>
+                  )
+                }
+              </Draggable>
+            ))
+          }
+          {provided.placeholder}
+          </ul>)
+        }
+        </Droppable>
+      </DragDropContext>
       <Card onClick={start}>
         <h2 >Start Tournament!</h2>
       </Card>
